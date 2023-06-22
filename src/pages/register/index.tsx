@@ -1,6 +1,6 @@
 import Logo from "../../assets/Logo.svg";
 import sprite from "../../assets/sprite.svg";
-import { LinkStyled } from "../../components/Buttonss/style";
+import { LinkStyled } from "../../components/Buttons/style";
 import { FormRegister } from "../../components/FormRegister";
 import RegisterContainer from "./registerContainer";
 

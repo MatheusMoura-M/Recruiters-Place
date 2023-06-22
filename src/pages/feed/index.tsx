@@ -24,7 +24,7 @@ import ReadComent from "../../components/Modal/Comment/read";
 import WriteComent from "../../components/Modal/Comment/write";
 import ModalChat from "../../components/Modal/Chat";
 import { v4 as uuid } from "uuid";
-import { LogOffModal } from "../../components/LogOfff";
+import { LogOffModal } from "../../components/LogOff";
 import { iUser } from "../../interface";
 
 function Feed() {

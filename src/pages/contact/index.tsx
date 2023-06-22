@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Input from "../../components/Input";
 import { ContainerFormContact, ContainerImg, MainContainer } from "./style";
 import Logo from "../../assets/Logo.svg";
-import { ButtonStylized } from "../../components/Buttonss/style";
+import { ButtonStylized } from "../../components/Buttons/style";
 import emailjs from "@emailjs/browser";
 import { useAuth } from "../../context/webcontext";
 

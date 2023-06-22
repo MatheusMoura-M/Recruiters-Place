@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { SlPencil } from "react-icons/sl";
 import { useAuth } from "../../context/webcontext";
 import { schemaPerfilRech } from "../../schemas";
-import { ButtonStylized } from "../Buttonss/style";
+import { ButtonStylized } from "../Buttons/style";
 import Input from "../Input";
-import { LogOffModal } from "../LogOfff";
+import { LogOffModal } from "../LogOff";
 import {
   Container,
   ContainerContent,

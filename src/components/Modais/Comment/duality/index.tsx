@@ -1,4 +1,4 @@
-import { ButtonStylized } from "../../../Buttonss/style";
+import { ButtonStylized } from "../../../Buttons/style";
 import { ModalComentContainer } from "./style";
 import close from "../../../../assets/close.png";
 import { useAuth } from "../../../../context/webcontext";

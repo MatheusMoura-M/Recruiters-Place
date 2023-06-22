@@ -8,7 +8,7 @@ import {
   ButtonStylized,
   LinkContact,
   LinkStyled,
-} from "../../components/Buttonss/style";
+} from "../../components/Buttons/style";
 import HomemLogin from "../../assets/HomemLogin.svg";
 import ImgLogin from "../../assets/ImgLogin.svg";
 import { useEffect } from "react";
