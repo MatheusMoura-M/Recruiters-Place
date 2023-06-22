@@ -1,14 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuth } from "../context/webcontext";
-import Chat from "../pages/Chatt";
-import Feed from "../pages/Feedd";
+import Chat from "../pages/Chat";
+import Feed from "../pages/Feed";
 import { LandingPage } from "../pages/LandingPage";
-import { Login } from "../pages/Loginn";
-import Register from "../pages/Registerr";
+import { Login } from "../pages/Login";
+import Register from "../pages/Register";
 import { PrivateRoutes } from "./PrivateRoutes";
-import Perfil from "../pages/Perfill";
+import Perfil from "../pages/Perfil";
 import { FormEditProfile } from "../pages/DevDashboard/FormEditProfile";
-import ContactUs from "../pages/Contactt";
+import ContactUs from "../pages/Contact";
 import Error from "../pages/404";
 
 function RoutesMain() {

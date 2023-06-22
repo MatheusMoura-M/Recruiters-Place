@@ -12,7 +12,7 @@ import {
 } from "./styles";
 import FotoPerfil from "../../../assets/carbon_user-avatar.svg";
 import { v4 as uuid } from "uuid";
-import { Tag } from "../../../pages/Feedd/styles";
+import { Tag } from "../../../pages/Feed/styles";
 import close from "../../../assets/close.png";
 import { iUser } from "../../../interface";
 import { useAuth } from "../../../context/webcontext";
