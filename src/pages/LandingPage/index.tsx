@@ -18,7 +18,7 @@ import {
 } from "./style";
 import { LinkStyled } from "../../components/Buttons/style";
 import { useAuth } from "../../context/webcontext";
-import Slogan from "../../components/BackgroundStyled";
+import Slogan from "../../components/BackgroundStyledd";
 
 export const LandingPage = () => {
   const { setUser, user } = useAuth();

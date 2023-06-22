@@ -1,7 +1,7 @@
 import Logo from "../../assets/Logo.svg";
 import sprite from "../../assets/sprite.svg";
 import { LinkStyled } from "../../components/Buttons/style";
-import { FormRegister } from "../../components/FormRegister";
+import { FormRegister } from "../../components/FormRegisterr";
 import RegisterContainer from "./registerContainer";
 
 function Register() {
