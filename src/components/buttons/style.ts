@@ -9,6 +9,7 @@ export const ButtonStylized = styled.button<iStyledProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 100%;
   height: 48px;
 
