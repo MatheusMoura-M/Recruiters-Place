@@ -4,7 +4,7 @@ import {
   ModalComentWriteContainerMessage,
 } from "./style";
 import close from "../../../../assets/close.png";
-import FormMessage from "../../../FormMessagee";
+import FormMessage from "../../../FormMessage";
 import { useAuth } from "../../../../context/webcontext";
 
 function WriteComent() {

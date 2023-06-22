@@ -14,7 +14,7 @@ import ImgLogin from "../../assets/ImgLogin.svg";
 import { useEffect } from "react";
 import { useAuth } from "../../context/webcontext";
 import { ErrorMessage } from "../../components/ParagraphError";
-import Slogan from "../../components/BackgroundStyledd";
+import Slogan from "../../components/BackgroundStyled";
 import { iUserLogin } from "../../interface";
 
 export const Login = () => {

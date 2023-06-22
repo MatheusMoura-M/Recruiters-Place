@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import HamburguerMenu from "../../components/HamburguerMenuu";
-import HeaderDashboard from "../../components/HeaderDashboardd";
+import HamburguerMenu from "../../components/HamburguerMenu";
+import HeaderDashboard from "../../components/HeaderDashboard";
 
 function Dashboard() {
   return (
