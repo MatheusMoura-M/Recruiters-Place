@@ -16,7 +16,7 @@ import {
   ButtonLogout,
   ContainerWelcome,
 } from "./style";
-import { LinkStyled } from "../../components/Buttons/style";
+import { LinkStyled } from "../../components/Buttonss/style";
 import { useAuth } from "../../context/webcontext";
 import Slogan from "../../components/BackgroundStyled";
 

@@ -10,7 +10,7 @@ import {
 import Input from "../../Input";
 import { CheckCircle, CircleNotch, XCircle } from "phosphor-react";
 import ModalTechs from "./modalTechs";
-import { LinkStyled } from "../../Buttons/style";
+import { LinkStyled } from "../../Buttonss/style";
 import Select from "../../Select";
 import { keyboardKey } from "@testing-library/user-event";
 import { iProgressProps, iUserRegister } from "../../../interface";

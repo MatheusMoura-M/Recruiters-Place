@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { ButtonStylized } from "../Buttons/style";
+import { ButtonStylized } from "../Buttonss/style";
 import { FormChatContainer } from "./style";
 import { iChat, iUser } from "../../interface";
 import { useAuth } from "../../context/webcontext";
