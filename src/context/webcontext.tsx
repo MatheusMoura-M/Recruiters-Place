@@ -18,21 +18,26 @@ import {
   iUser,
   iSend,
   iUserLogin,
+  iApiError,
+  iFormEditProfile,
 } from "../interface";
 import { toast } from "react-toastify";
 import techList from "../mockList/devTechs.json";
 import { UseFormReset } from "react-hook-form";
+import { AxiosError } from "axios";
 
 export interface iWebProvider {
   children: ReactNode;
 }
 
 export interface iWebContext {
+  loadUser(): Promise<void>;
   onLogin: (info: iUserLogin) => void;
   onRegister: (data: iUserRegister) => Promise<void>;
   resolved: boolean | undefined;
   setResolved: Dispatch<SetStateAction<boolean | undefined>>;
-  editSubmit: (
+  editDataOfDevSubmit(formData: iFormEditProfile): Promise<void>;
+  editRechSubmit: (
     info: iEditRech,
     reset: UseFormReset<iEditRech>
   ) => Promise<void>;
@@ -114,12 +119,12 @@ export function WebProvider({ children }: iWebProvider) {
 
   async function loadUser() {
     const token = localStorage.getItem("RPlace:Token");
-    const id = localStorage.getItem("RPlace:id");
 
     if (token) {
       try {
-        Api.defaults.headers.authorization = `Bearer ${token}`;
-        const { data } = await Api.get(`/user/${id}`);
+        const { data } = await Api.get("/user/profile", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         setUser(data);
       } catch (error) {
@@ -241,7 +246,30 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  async function editSubmit(info: iEditRech, reset: UseFormReset<iEditRech>) {
+  async function editDataOfDevSubmit(formData: iFormEditProfile) {
+    try {
+      const { data } = await Api.patch<iUser>(`/user`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("RPlace:Token")}`,
+        },
+      });
+
+      setUser(data);
+      getAllUsers();
+      setFilterDevelopers(
+        allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
+      );
+      toast.success("Informações atualizadas!");
+    } catch (error) {
+      const requestError = error as AxiosError<iApiError>;
+      toast.error(requestError.response?.data.error);
+    }
+  }
+
+  async function editRechSubmit(
+    info: iEditRech,
+    reset: UseFormReset<iEditRech>
+  ) {
     const id = localStorage.getItem("RPlace:id");
     const token = localStorage.getItem("RPlace:Token");
 
@@ -260,7 +288,11 @@ export function WebProvider({ children }: iWebProvider) {
         try {
           Api.defaults.headers.authorization = `Bearer ${token}`;
 
-          await Api.patch(`/user/${id}`, info);
+          await Api.patch("/user", info, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("RPlace:Token")}`,
+            },
+          });
 
           setUser({ ...user, ...info, tech: {} });
           setBoxEdit(false);
@@ -355,20 +387,6 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
-  function filteredTechs(elem: iUser) {
-    const separateTechs = Object.entries<boolean>(
-      elem.tech as { [s: string]: boolean } | ArrayLike<boolean>
-    );
-    const filterTechs = separateTechs.filter((elem) => {
-      return elem[1] === true;
-    });
-
-    const arrFilteredTechs = filterTechs.map((elem) => {
-      return techList.find((E) => elem[0] === E.tech);
-    });
-    return arrFilteredTechs;
-  }
-
   async function onSubmitSendChat(data: iSend) {
     data.idTo = callId;
     const findTo = allChats.find((element) => element.idTo === callId);
@@ -391,6 +409,20 @@ export function WebProvider({ children }: iWebProvider) {
     }
   }
 
+  function filteredTechs(elem: iUser) {
+    const separateTechs = Object.entries<boolean>(
+      elem.tech as { [s: string]: boolean } | ArrayLike<boolean>
+    );
+    const filterTechs = separateTechs.filter((elem) => {
+      return elem[1] === true;
+    });
+
+    const arrFilteredTechs = filterTechs.map((elem) => {
+      return techList.find((E) => elem[0] === E.tech);
+    });
+    return arrFilteredTechs;
+  }
+
   return (
     <WebContext.Provider
       value={{
@@ -398,7 +430,7 @@ export function WebProvider({ children }: iWebProvider) {
         onRegister,
         resolved,
         setResolved,
-        editSubmit,
+        editRechSubmit,
         setUser,
         user,
         allUsers,
@@ -439,6 +471,8 @@ export function WebProvider({ children }: iWebProvider) {
         loading,
         setLoading,
         navigate,
+        editDataOfDevSubmit,
+        loadUser,
       }}
     >
       {children}

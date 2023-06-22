@@ -2,10 +2,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { motion } from "framer-motion";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { BoxImgCheckbox } from "./BoxImgCheckbox";
+import { BoxImgCheckbox } from "../../../../components/Forms/FormEditProfile/FormTechOfDev/BoxImgCheckbox";
 import { BoxBtns, TechsBox, FormStyled } from "./style";
 import { Api } from "../../../../services/api";
-import { ButtonStyled } from "../FormDataOfDev/style";
+import { ButtonStyled } from "../../../../components/Forms/FormEditProfile/FormDataOfDev/style";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import {
@@ -22,8 +22,14 @@ interface iTechOfDev {
 }
 
 export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
-  const { user, setUser, getAllUsers, setFilterDevelopers, allUsers } =
-    useAuth();
+  const {
+    user,
+    setUser,
+    getAllUsers,
+    setFilterDevelopers,
+    allUsers,
+    loadUser,
+  } = useAuth();
 
   const [isActiveTechs, setIsActiveTechs] = useState<iTechs | undefined>({
     html: false,
@@ -38,6 +44,7 @@ export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
   });
 
   useEffect(() => {
+    loadUser();
     setIsActiveTechs(user?.tech);
   }, []);
 
@@ -47,9 +54,16 @@ export const FormTechOfDev = ({ setStep }: iTechOfDev) => {
 
   const onSubmit: SubmitHandler<iFormEditProfile> = async () => {
     try {
-      const { data } = await Api.patch<iUser>(`/user/${user?.id}`, {
-        tech: { ...isActiveTechs },
-      });
+      const { data } = await Api.patch<iUser>(
+        "/user",
+        { tech: { ...isActiveTechs } },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("RPlace:Token")}`,
+          },
+        }
+      );
+
       getAllUsers();
       setFilterDevelopers(
         allUsers?.filter((elem: iUser) => elem.isRecruiter === false)

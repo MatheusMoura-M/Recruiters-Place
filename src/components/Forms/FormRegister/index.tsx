@@ -1,13 +1,13 @@
 import { RegisterForm } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Input from "../Input";
-import ModalRegister from "../Modais/Register";
+import Input from "../../Input";
+import ModalRegister from "../../Modais/Register";
 import { useState } from "react";
 import { keyboardKey } from "@testing-library/user-event";
-import { iProgressProps, iUserRegister } from "../../interface";
-import { useAuth } from "../../context/webcontext";
-import { schemaFormRegister } from "../../schemas";
+import { iProgressProps, iUserRegister } from "../../../interface";
+import { useAuth } from "../../../context/webcontext";
+import { schemaFormRegister } from "../../../schemas";
 
 export function FormRegister() {
   const { onRegister } = useAuth();

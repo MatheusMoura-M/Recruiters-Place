@@ -1,5 +1,5 @@
 import { ModalLogOff } from "./style";
-import { ModalFeedContainer } from "../Modal/Feed/styles";
+import { ModalFeedContainer } from "../Modais/Feed/styles";
 import { useAuth } from "../../context/webcontext";
 
 export function LogOffModal() {

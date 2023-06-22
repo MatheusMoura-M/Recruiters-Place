@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BoxStyled, Checkbox, ImgStyled, LabelImg } from "./style";
+import { iTechs } from "../../../../../interface";
 
 interface iBoxImgCheckbox {
   id: string;
@@ -14,12 +15,6 @@ export const BoxImgCheckbox = ({
   isActive,
   setIsActiveTechs,
 }: iBoxImgCheckbox) => {
-  useEffect(() => {
-    setIsActiveTechs((old: any) => {
-      return { ...old, html: false };
-    });
-  }, []);
-
   return (
     <BoxStyled>
       <Checkbox

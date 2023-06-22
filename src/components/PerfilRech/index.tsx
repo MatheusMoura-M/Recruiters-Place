@@ -17,7 +17,7 @@ import avatar from "../../assets/avatarTech.png";
 import { iEditRech } from "../../interface";
 
 const PerfilRech = () => {
-  const { boxEdit, setBoxEdit, editSubmit, user } = useAuth();
+  const { boxEdit, setBoxEdit, editRechSubmit, user } = useAuth();
 
   const {
     register,
@@ -63,7 +63,7 @@ const PerfilRech = () => {
       {boxEdit && (
         <Container size="big">
           <FormEditRech
-            onSubmit={handleSubmit((values) => editSubmit(values, reset))}
+            onSubmit={handleSubmit((values) => editRechSubmit(values, reset))}
           >
             <Input
               id="name"

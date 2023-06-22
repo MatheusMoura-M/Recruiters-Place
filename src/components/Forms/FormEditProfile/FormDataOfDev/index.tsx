@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import {
@@ -9,27 +9,27 @@ import {
   TitleEditProfile,
   TextAreaBio,
 } from "./style";
-import { InputDevInfoEdit } from "./InputDevInfoEdit";
-import { Api } from "../../../../services/api";
-import { AxiosError } from "axios";
-import { toast } from "react-toastify";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { useAuth } from "../../../../context/webcontext";
-import { iApiError, iFormEditProfile, iUser } from "../../../../interface";
+import { iFormEditProfile, iUser } from "../../../../interface";
 import { schemaEditDevInfo } from "../../../../schemas";
+import Input from "../../../Input";
 
 interface iPersonalDataOfDev {
   setStep: Dispatch<SetStateAction<1 | 2>>;
 }
 
 export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
-  const { user, setUser, getAllUsers, setFilterDevelopers, allUsers } =
-    useAuth();
+  const { user, editDataOfDevSubmit, loadUser } = useAuth();
+
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<iFormEditProfile>({
     resolver: yupResolver(schemaEditDevInfo),
@@ -37,20 +37,7 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
 
   const onSubmit: SubmitHandler<iFormEditProfile> = async (formData) => {
     delete formData.tech;
-
-    try {
-      const { data } = await Api.patch<iUser>(`/user/${user?.id}`, formData);
-
-      setUser(data);
-      getAllUsers();
-      setFilterDevelopers(
-        allUsers?.filter((elem: iUser) => elem.isRecruiter === false)
-      );
-      toast.success("Informações atualizadas!");
-    } catch (error) {
-      const requestError = error as AxiosError<iApiError>;
-      toast.error(requestError.response?.data.error);
-    }
+    editDataOfDevSubmit(formData);
   };
 
   return (
@@ -68,81 +55,91 @@ export const FormDataOfDev = ({ setStep }: iPersonalDataOfDev) => {
           {...register("bio")}
           placeholder="Bio"
           defaultValue={user?.bio}
-        ></TextAreaBio>
+        />
 
         <AllInputBox>
           <div>
-            <InputDevInfoEdit
+            <Input
               id="name"
               label="Nome"
               register={register}
               type="text"
               defaultValue={user?.name}
               errors={errors.name}
+              getValues={getValues}
             />
 
-            <InputDevInfoEdit
+            <Input
               type="text"
               id="vacancy"
               register={register}
-              label="vacancy"
+              label="Cargo"
               defaultValue={user?.vacancy}
+              getValues={getValues}
             />
 
-            <InputDevInfoEdit
+            <Input
               type="text"
               id="linkedin"
               register={register}
               label="LinkedIn"
               defaultValue={user?.linkedin}
+              getValues={getValues}
             />
 
-            <InputDevInfoEdit
+            <Input
               type="text"
               id="portfolio"
               register={register}
               label="Portifolio"
               defaultValue={user?.portfolio}
+              getValues={getValues}
             />
-            <InputDevInfoEdit
+
+            <Input
               type="text"
               id="fotoDoPerfil"
               register={register}
               label="Foto do Perfil"
               defaultValue={user?.fotoDoPerfil}
+              getValues={getValues}
             />
           </div>
 
           <div>
-            <InputDevInfoEdit
+            <Input
               type="text"
               id="city"
               register={register}
               label="Localização"
               defaultValue={user?.city}
+              getValues={getValues}
             />
-            <InputDevInfoEdit
+            <Input
               type="email"
               id="email"
               register={register}
               label="Email"
               defaultValue={user?.email}
+              getValues={getValues}
               errors={errors.email}
             />
 
-            <InputDevInfoEdit
+            <Input
               type="text"
               id="schooling"
               register={register}
               label="Escolaridade"
               defaultValue={user?.schooling}
+              getValues={getValues}
             />
-            <InputDevInfoEdit
+            <Input
               type="text"
               id="github"
               register={register}
               label="GitHub"
               defaultValue={user?.github}
+              getValues={getValues}
             />
           </div>
         </AllInputBox>

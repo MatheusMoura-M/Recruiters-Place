@@ -75,6 +75,7 @@ export interface iInputProps {
   register: UseFormRegister<any>;
   type: string;
   showPass?: boolean;
+  defaultValue?: string;
 }
 
 export interface iEditRech {
@@ -128,6 +129,7 @@ export interface iTech {
 }
 
 export interface iTechs {
+  id?: string;
   html?: boolean;
   css?: boolean;
   js?: boolean;

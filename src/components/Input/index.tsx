@@ -14,6 +14,7 @@ const Input = ({
   register,
   type,
   showPass,
+  defaultValue,
 }: iInputProps) => {
   // Destructuring the register
   const { onChange, onBlur, name, ref } = register(id);
@@ -21,7 +22,7 @@ const Input = ({
   const inputValue = getValues(id) ? getValues(id) : "";
 
   // States
-  const [value, setValue] = useState(inputValue);
+  const [value, setValue] = useState(defaultValue ? defaultValue : inputValue);
   const [show, setShow] = useState(false);
   const [passType, setPassType] = useState("password");
 

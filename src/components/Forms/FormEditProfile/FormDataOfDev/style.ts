@@ -75,6 +75,7 @@ export const AllInputBox = styled.div`
   div {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
   }
 
   @media (max-width: 500px) {

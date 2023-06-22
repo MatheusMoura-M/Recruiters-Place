@@ -15,11 +15,8 @@ import {
 } from "./style";
 import { AnimatePresence, motion } from "framer-motion";
 import avatar from "../../assets/avatar.svg";
-
 import pen from "../../assets/pen.svg";
-
 import { useAuth } from "../../context/webcontext";
-
 import techList from "../../mockList/devTechs.json";
 import { LogOffModal } from "../../components/LogOff";
 import { v4 as uuid } from "uuid";

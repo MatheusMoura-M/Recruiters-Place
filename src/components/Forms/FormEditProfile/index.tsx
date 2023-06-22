@@ -2,7 +2,7 @@ import { BoxForm } from "./style";
 
 import { useState } from "react";
 import { FormTechOfDev } from "./FormTechOfDev";
-import { FormDataOfDev } from "./FormDataOfDev";
+import { FormDataOfDev } from "../../../components/Forms/FormEditProfile/FormDataOfDev";
 import { LogOffModal } from "../../../components/LogOff";
 
 export const FormEditProfile = () => {

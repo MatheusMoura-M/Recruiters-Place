@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
-import { ButtonStylized } from "../Buttons/style";
-import { FormChatContainer } from "./style";
-import { iChat, iUser } from "../../interface";
-import { useAuth } from "../../context/webcontext";
+import { ButtonStylized } from "../../Buttons/style";
+import { FormContainer } from "./style";
+import { iComment, iUser } from "../../../interface";
+import { useAuth } from "../../../context/webcontext";
 
-function FormChat() {
-  const { user, chatId, allUsers, onSubmitChat, loading } = useAuth();
+function FormMessage() {
+  const { onSubmitComent, user, comentId, allUsers, loading } = useAuth();
 
-  const { register, handleSubmit } = useForm<iChat>({});
+  const { register, handleSubmit } = useForm<iComment>({});
 
   return (
-    <FormChatContainer onSubmit={handleSubmit(onSubmitChat)}>
+    <FormContainer onSubmit={handleSubmit(onSubmitComent)}>
       <div>
         <h3>De: </h3>
         <input type="text" value={user?.name} {...register("from")} />
@@ -20,7 +20,7 @@ function FormChat() {
         <input
           type="text"
           value={allUsers?.reduce((acc, act: iUser) => {
-            if (act.id === Number(chatId)) {
+            if (act.id === Number(comentId)) {
               return acc + act.name;
             } else {
               return acc + "";
@@ -29,8 +29,8 @@ function FormChat() {
           {...register("to")}
         />
       </div>
-      <textarea id="" {...register("chat")}></textarea>
-      <ButtonStylized type="submit" styled="align-end">
+      <textarea id="" {...register("coment")}></textarea>
+      <ButtonStylized styled="align-end" type="submit">
         {!loading && <>Enviar</>}
         {loading && (
           <div className="lds-ellipsis">
@@ -41,8 +41,8 @@ function FormChat() {
           </div>
         )}
       </ButtonStylized>
-    </FormChatContainer>
+    </FormContainer>
   );
 }
 
-export default FormChat;
+export default FormMessage;

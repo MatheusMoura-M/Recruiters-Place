@@ -7,7 +7,7 @@ import { Login } from "../pages/Login";
 import Register from "../pages/Register";
 import { PrivateRoutes } from "./PrivateRoutes";
 import Perfil from "../pages/Perfil";
-import { FormEditProfile } from "../pages/DevDashboard/FormEditProfile";
+import { FormEditProfile } from "../components/Forms/FormEditProfile";
 import ContactUs from "../pages/Contact";
 import Error from "../pages/404";
 
