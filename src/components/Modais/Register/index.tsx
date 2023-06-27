@@ -200,7 +200,7 @@ const ModalRegister = ({
               errors={errors.vacancy}
               getValues={getValues}
               id="vacancy"
-              label="Selecione seu vacancy"
+              label="Cargo"
               register={register}
             />
             <div className="controls">

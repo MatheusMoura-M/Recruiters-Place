@@ -48,6 +48,9 @@ const Select = ({ errors, getValues, id, label, register }: SelectProps) => {
 
   return (
     <CustomSelect>
+      <label htmlFor={id}>
+        {id === "schooling" ? "Escolaridade" : "Cargo"}
+      </label>
       <select
         id={id}
         value={value}

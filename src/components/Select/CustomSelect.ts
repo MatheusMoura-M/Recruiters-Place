@@ -2,11 +2,17 @@ import styled from "styled-components";
 
 const CustomSelect = styled.div`
   width: 100%;
+  max-width: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  label {
+    width: 85%;
+    font-size: 14px;
+  }
 
   select {
     width: 100%;
