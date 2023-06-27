@@ -130,4 +130,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Documentação do projeto
 
-[Documentação](https://github.com/MatheusMoura-M/e-commerce-cars-shop-back)
+[Documentação](https://github.com/MatheusMoura-M/recruiters-place_back)
